@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="images/favicon.ico" th:href="@{/images/favicon.ico}">
+	<link rel="stylesheet" href="css/iconfont.css" th:href="@{/css/iconfont.css}">
+	<link rel="stylesheet" href="css/global.css" th:href="@{/css/global.css}">
+	<link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css" th:href="@{/css/bootstrap-theme.min.css}">
+	<link rel="stylesheet" href="css/login.css" th:href="@{/css/login.css}">
+	<script src="js/jquery.1.12.4.min.js" th:src="@{/js/jquery.1.12.4.min.js}" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}" charset="UTF-8"></script>
+	<script src="js/jquery.form.js" th:src="@{/js/jquery.form.js}" charset="UTF-8"></script>
+	<script src="js/global.js" th:src="@{/js/global.js}" charset="UTF-8"></script>
+	<script src="js/login.js" th:src="@{/js/login.js}" charset="UTF-8"></script>
+	<title>服装销售系统 - 登录 / 注册</title>
+</head>
+<body>
+	<div class="public-head-layout container">
+		<a class="logo" href="index.html"><img src="images/icons/logo.jpg" th:src="@{/images/icons/logo.jpg}" alt="U袋网" class="cover"></a>
+	</div>
+	<div style="background:url(images/login_bg.jpg) no-repeat center center; " th:style="'background:url(' + @{/images/login_bg.jpg} + ');'">
+		<div class="login-layout container">
+			<div class="form-box login">
+				<div class="tabs-nav">
+					<h2>欢迎登录</h2>
+				</div>
+				<div class="tabs_container">
+					<form action="" method="post" th:action="@{/user/inlogin}">
+						<p style="color: red" th:text="${message}" th:if="${not #strings.isEmpty(message)}"></p>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+								</div>
+								<input class="form-control " name="username" placeholder="用户名" autocomplete="off" type="text">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+								</div>
+								<input class="form-control" name="password" placeholder="请输入密码" autocomplete="off" type="text">
+							</div>
+						</div>
+						<div class="checkbox">
+	                        <a href="javascript:;" class="pull-right" id="resetpwd">忘记密码？</a>
+	                    </div>
+	                    <button class="btn btn-large btn-primary btn-lg btn-block" type="submit">登录</button>
+	                    <p class="text-center">没有账号？<a href="javascript:;" id="register">免费注册</a></p>
+                    </form>
+                </div>
+			</div>
+			<div class="form-box register">
+  				<div class="tabs-nav">
+  					<h2>欢迎注册<a href="javascript:;" class="pull-right fz16" id="reglogin">返回登录</a></h2>
+  				</div>
+  				<div class="tabs_container">
+					<form class="tabs_form" action="index.html" method="post" id="regForm">
+						<div class="form-group">
+							<div class="input-group">
+								<input class="form-control" name="username" placeholder="请输入名字" autocomplete="off" type="text" th:onblur="|checkUser(this)|">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<input class="form-control phone" name="phone" required placeholder="手机号" maxlength="11" autocomplete="off" type="text">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<input class="form-control password" name="password" placeholder="请输入密码" autocomplete="off" type="password">
+								<div class="input-group-addon pwd-toggle" title="显示密码"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></div>
+							</div>
+						</div>
+	                    <!-- 错误信息 -->
+						<div class="form-group">
+							<div id="msg" style="display: none">
+								<div class="alert alert-warning alert-dismissible fade in" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<strong id="tip">用户名已存在</strong>
+								</div>
+							</div>
+						</div>
+	                    <button class="btn btn-large btn-primary btn-lg btn-block submit" type="button" th:onclick="|register()|">注册</button>
+                    </form>
+                </div>
+			</div>
+			<div class="form-box resetpwd">
+  				<div class="tabs-nav clearfix">
+  					<h2>找回密码<a href="javascript:;" class="pull-right fz16" id="pwdlogin">返回登录</a></h2>
+  				</div>
+  				<div class="tabs_container">
+					<form class="tabs_form" action="https://rpg.blue/member.php?mod=logging&action=login" method="post" id="resetpwd_form">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+								</div>
+								<input class="form-control phone" name="phone" id="resetpwd_phone" required placeholder="手机号" maxlength="11" autocomplete="off" type="text">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+								</div>
+								<input class="form-control password" name="password" id="resetpwd_pwd" placeholder="新的密码" autocomplete="off" type="password">
+								<div class="input-group-addon pwd-toggle" title="显示密码"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></div>
+							</div>
+						</div>
+	                    <!-- 错误信息 -->
+						<div class="form-group">
+							<div class="error_msg" id="resetpwd_error"></div>
+						</div>
+	                    <button class="btn btn-large btn-primary btn-lg btn-block submit" id="resetpwd_submit" type="button">重置密码</button>
+                    </form>
+                    <div class="tabs_div">
+	                    <div class="success-box">
+	                    	<div class="success-msg">
+								<i class="success-icon"></i>
+	                    		<p class="success-text">密码重置成功</p>
+	                    	</div>
+	                    </div>
+	                    <div class="option-box">
+	                    	<div class="buts-title">
+	                    		现在您可以
+	                    	</div>
+	                    	<div class="buts-box">
+	                    		<a role="button" href="index.html" class="btn btn-block btn-lg btn-default">继续访问商城</a>
+								<a role="button" href="login.html" class="btn btn-block btn-lg btn-info">返回登陆</a>
+	                    	</div>
+	                    </div>
+                    </div>
+                </div>
+			</div>
+			<script>
+				$(document).ready(function() {
+					// 判断直接进入哪个页面 例如 login.php?p=register
+					switch($.getUrlParam('p')) {
+						case 'register': $('.register').show(); break;
+						case 'resetpwd': $('.resetpwd').show(); break;
+						default: $('.login').show();
+					};
+					// 以下确定按钮仅供参考
+					$('.submit').click(function() {
+						var form = $(this).parents('form')
+						var phone = form.find('input.phone');
+						var pwd = form.find('input.password');
+						var error = form.find('.error_msg');
+						var success = form.siblings('.tabs_div');
+						var options = {
+							beforeSubmit: function () {
+								console.log('喵喵喵')
+							},
+							success: function (data) {
+								console.log(data)
+							}
+						}
+
+					})
+				});
+				//验证用户名是否已经存在
+				function checkUser(obj) {
+					$.ajax({
+						url: contextPath +"/user/checkUserName",
+						data:{"username":obj.value},
+						method:"post",
+						success:function (data) {
+							$("#msg").css("display","block");
+							if (data == 102){//用户存在
+								$("#tip").html("用户名已存在");
+							}else {
+								$("#tip").html("用户名可以注册");
+							}
+						}
+					})
+				}
+
+				//用户注册
+				function register() {
+					var datas = $("#regForm").serialize();
+					$.ajax({
+						url: contextPath +"/user/register",
+						data:datas,
+						method:"post",
+						success:function (data) {
+							if (data=='success'){
+								alert("注册成功，请登录");
+							}
+						}
+					})
+
+				}
+
+			</script>
+			<script th:inline="javascript">
+				//获取应用路径
+				var contextPath = [[${#request.getContextPath()}]];
+			</script>
+		</div>
+	</div>
+</body>
+</html>

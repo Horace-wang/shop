@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>服装列表数据</title>
+</head>
+<body>
+<div class="item-list__area clearfix">
+	<div class="item-card" th:each="cloth:${clothesList}">
+		<a href="item_show.html" th:href="@{/detail(id=${cloth.id})}" class="photo">
+			<img src="images/temp/M-001.jpg" th:src="@{/static/}+${cloth.imgUrl}" alt="锦瑟 原创传统日常汉服男绣花交领衣裳cp情侣装春夏款" class="cover">
+			<div class="name" th:text="${cloth.name}">锦瑟 原创传统日常汉服男绣花交领衣裳cp情侣装春夏款</div></a>
+		<div class="middle">
+			<div class="price" th:text="${cloth.newPrice}"><small>￥</small>18.0</div>
+			<span class="pull-right c6" >进货价</span>
+		</div>
+	</div>
+</div>
+<!-- 分页 -->
+<div class="page text-right clearfix">
+	<a class="disabled" th:onclick="loadData([[${pre}]],[[${category}]])">上一页</a>
+	<a th:each="i:${#numbers.sequence(1,pages)}" th:text="${i}" th:class="${cur==i} ? 'select':''"
+	th:onclick="loadData([[${i}]],[[${category}]])">1</a>
+	<a class="" href="javascript:void(0)" th:onclick="loadData([[${next}]],[[${category}]])">下一页</a>
+	<a class="disabled" th:text="${cur+'/'+pages}">1/5页</a>
+</div>
+</body>
+</html>

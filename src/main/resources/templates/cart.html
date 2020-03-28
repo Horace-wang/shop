@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="images/favicon.ico" th:href="@{/images/favicon.ico}">
+	<link rel="stylesheet" href="css/iconfont.css" th:href="@{/css/iconfont.css}">
+	<link rel="stylesheet" href="css/global.css" th:href="@{/css/global.css}">
+	<link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css" th:href="@{/css/bootstrap-theme.min.css}">
+	<link rel="stylesheet" href="css/swiper.min.css" th:href="@{/css/swiper.min.css}">
+	<link rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}">
+	<script src="js/jquery.1.12.4.min.js" th:src="@{/js/jquery.1.12.4.min.js}" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}" charset="UTF-8"></script>
+	<script src="js/swiper.min.js" th:src="@{/js/swiper.min.js}" charset="UTF-8"></script>
+	<script src="js/global.js" th:src="@{/js/global.js}" charset="UTF-8"></script>
+	<script src="js/jquery.DJMask.2.1.1.js" th:src="@{/js/jquery.DJMask.2.1.1.js}" charset="UTF-8"></script>
+	<title>服装销售系统</title>
+</head>
+<body>
+	<!-- 顶部tab -->
+	<div th:replace="commons/toptab::toptab"></div>
+	<!-- 顶部标题 -->
+	<div class="bgf5 clearfix">
+		<div class="top-user">
+			<div class="inner">
+				<a class="logo" href="index.html" th:href="@{/index}"><img src="images/icons/logo.jpg" alt="U袋网" class="cover"></a>
+				<div class="title">购物车</div>
+			</div>
+		</div>
+	</div>
+	<div class="content clearfix bgf5">
+		<section class="user-center inner clearfix">
+			<div class="user-content__box clearfix bgf">
+				<div class="title">购物车</div>
+				<form action="" class="shopcart-form__box">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th width="150">
+									<label class="checked-label"><input type="checkbox" class="check-all"><i></i> 全选</label>
+								</th>
+								<th width="300">商品信息</th>
+								<th width="150">单价</th>
+								<th width="200">数量</th>
+								<th width="200">总价</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cart:${cartList}">
+								<th scope="row">
+									<label class="checked-label"><input type="checkbox" th:value="${cart.id}"><i></i>
+										<div class="img"><img src="images/temp/M-003.jpg" th:src="@{/static/}+${cart.imgUrl}" alt="" class="cover"></div>
+									</label>
+								</th>
+								<td>
+									<div class="name ep3" th:text="${cart.clothesName}">锦瑟 原创传统日常汉服男绣花交领衣裳cp情侣装春夏款</div>
+									<div class="type c9" th:text="${'颜色：'+cart.color}">颜色分类：深棕色  尺码：均码</div>
+								</td>
+								<td th:text="${cart.newPrice}">¥20.0</td>
+								<td th:text="${cart.count}"></td>
+								<td th:text="${cart.newPrice*cart.count}">¥20.0</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="user-form-group tags-box shopcart-submit pull-right">
+						<button type="submit" class="btn">提交订单</button>
+					</div>
+					<div class="checkbox shopcart-total">
+						<button class="btn btn-danger"></button>>
+						<div class="pull-right">
+							商品 <span th:text="${session.userCartInfo.num}">2</span> 件
+							合计
+							<b class="cr">¥<span class="fz24" th:text="${session.userCartInfo.totalPrice}">40.00</span></b>
+						</div>
+					</div>
+					<script>
+						var ids = '';
+						$(document).ready(function(){
+							var $item_checkboxs = $('.shopcart-form__box tbody input[type="checkbox"]'),
+								$check_all = $('.check-all');
+							// 全选
+							$check_all.on('change', function() {
+								$check_all.prop('checked', $(this).prop('checked'));
+								$item_checkboxs.prop('checked', $(this).prop('checked'));
+							});
+							// 点击选择
+							$item_checkboxs.on('change', function() {
+								var flag = true;
+								$item_checkboxs.each(function() {
+									if (!$(this).prop('checked')) {
+										flag = false;
+									}
+								});
+								$check_all.prop('checked', flag);
+							});
+						});
+					</script>
+				</form>
+			</div>
+		</section>
+	</div>
+	<!-- 右侧菜单 -->
+	<div th:replace="commons/rightdown::rightdown"></div>
+	<!-- 底部信息 -->
+	<div class="footer">
+		<div class="footer-tags">
+			<div class="tags-box inner">
+				<div class="tag-div">
+					<img src="images/icons/footer_1.gif" alt="厂家直供">
+				</div>
+				<div class="tag-div">
+					<img src="images/icons/footer_2.gif" alt="一件代发">
+				</div>
+				<div class="tag-div">
+					<img src="images/icons/footer_3.gif" alt="美工活动支持">
+				</div>
+				<div class="tag-div">
+					<img src="images/icons/footer_4.gif" alt="信誉认证">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
