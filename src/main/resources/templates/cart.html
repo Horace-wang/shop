@@ -63,7 +63,7 @@
 						</tbody>
 					</table>
 					<div class="user-form-group tags-box shopcart-submit pull-right">
-						<button type="submit" class="btn">提交订单</button>
+						<button type="button" th:onclick="confirmOrder()" class="btn">提交订单</button>
 					</div>
 					<div class="checkbox shopcart-total">
 						<label><input type="checkbox" class="check-all"><i></i> 全选</label>
@@ -106,7 +106,6 @@
 										$(this).parent().parent().parent().remove()
 									}
 								})
-								console.log(ids.substring(0,ids.length-1));
 								$.ajax({
 									url:contextPath +'/deleteCart',
 									data:{'ids':ids.substring(0,ids.length-1)},
@@ -115,12 +114,28 @@
 										if (data == 'success'){
 											window.location.href=contextPath + '/cartList';
 										}
-
 									}
 								})
 
 							})
 						});
+						//确认订单
+						var count=0;
+						function confirmOrder() {
+							var ids='';
+							var $item_checkboxs = $('.shopcart-form__box tbody input[type="checkbox"]');
+							$item_checkboxs.each(function() {
+								if ($(this).prop('checked')) {
+									ids +=$(this).prop("value") +",";
+									count++;
+								}
+							});
+							if (count == 0){
+								alert("请选择商品");
+							}else {
+								window.location.href=contextPath +'/orderConfirm?ids=' +ids;
+							}
+						}
 					</script>
 					<script th:inline="javascript">
 						//获取应用路径
