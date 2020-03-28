@@ -55,4 +55,11 @@ public class CartController {
 
         return "cart";
     }
+
+    //删除购物车
+    @ResponseBody
+    @RequestMapping("/deleteCart")
+    public String delete(String ids){
+        return cartService.batchDelete(ids);
+    }
 }

@@ -106,9 +106,25 @@
 										$(this).parent().parent().parent().remove()
 									}
 								})
-								console.log(ids);
+								console.log(ids.substring(0,ids.length-1));
+								$.ajax({
+									url:contextPath +'/deleteCart',
+									data:{'ids':ids.substring(0,ids.length-1)},
+									method:"post",
+									success:function (data) {
+										if (data == 'success'){
+											window.location.href=contextPath + '/cartList';
+										}
+
+									}
+								})
+
 							})
 						});
+					</script>
+					<script th:inline="javascript">
+						//获取应用路径
+						var contextPath = [[${#request.getContextPath()}]];
 					</script>
 				</form>
 			</div>

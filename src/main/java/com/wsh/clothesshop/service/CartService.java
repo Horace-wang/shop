@@ -7,6 +7,7 @@ import com.wsh.clothesshop.mapper.CartMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -25,5 +26,14 @@ public class CartService extends ServiceImpl<CartMapper, Cart> {
             sum+= cart.getCount() * cart.getNewPrice();
         }
         return sum;
+    }
+
+    //批量删除
+    public String batchDelete(String ids){
+        if(ids!=null){
+            String[] idArray=ids.split(",");
+            cartMapper.deleteBatchIds(Arrays.asList(idArray));
+        }
+        return "success";
     }
 }
