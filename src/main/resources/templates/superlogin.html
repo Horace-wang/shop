@@ -4,13 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>登录页面</title>
-<link rel="icon" href="/images/favicon.ico" th:href="@{/back/images/favicon.ico}" type="image/ico">
+<link rel="icon" href="images/favicon.ico"type="image/ico">
 
-
-<meta name="author" content="yinqi">
-<link href="css/bootstrap.min.css" th:href="@{/back/css/bootstrap.min.css}" rel="stylesheet">
-<link href="css/materialdesignicons.min.css" th:href="@{/back/css/materialdesignicons.min.css}" rel="stylesheet">
-<link href="css/style.css" th:href="@{/back/css/style.css}" rel="stylesheet">
+<link href="back/css/bootstrap.min.css" rel="stylesheet">
+<link href="back/css/materialdesignicons.min.css"  rel="stylesheet">
+<link href="back/css/style.css"  rel="stylesheet">
 <style>
 .lyear-wrapper {
     position: relative;
@@ -58,9 +56,10 @@
         <!---->
         <a href="#"> <img alt="light year admin" src="back/images/logo-sidebar.png" th:src="@{/back/images/logo-sidebar.png}"> </a>
       </div>
-      <form action="#" method="post" th:action="@{/super/login}">
+      <form action="#" method="post" th:action="@{/superInLogin}">
+        <p style="color: red" th:text="${mess}" th:if="${not #strings.isEmpty(mess)}"></p>
         <div class="form-group has-feedback feedback-left">
-          <input type="text" placeholder="请输入您的用户名" class="form-control" name="superUsername" />
+          <input type="text" placeholder="请输入您的用户名" class="form-control" name="superuser" />
           <span class="mdi mdi-account form-control-feedback" aria-hidden="true"></span>
         </div>
         <div class="form-group has-feedback feedback-left">
@@ -74,8 +73,8 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="back/js/jquery.min.js" th:src="@{/back/js/jquery.min.js}"></script>
-<script type="text/javascript" src="back/js/bootstrap.min.js" th:src="@{/back/js/bootstrap.min.js}"></script>
+<script type="text/javascript" src="back/js/jquery.min.js"></script>
+<script type="text/javascript" src="back/js/bootstrap.min.js" ></script>
 <script type="text/javascript">;</script>
 </body>
 </html>

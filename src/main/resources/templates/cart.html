@@ -66,7 +66,8 @@
 						<button type="submit" class="btn">提交订单</button>
 					</div>
 					<div class="checkbox shopcart-total">
-						<button class="btn btn-danger"></button>>
+						<label><input type="checkbox" class="check-all"><i></i> 全选</label>
+						<a href="javascript:;" class="delete-all-btn">删除</a>
 						<div class="pull-right">
 							商品 <span th:text="${session.userCartInfo.num}">2</span> 件
 							合计
@@ -93,6 +94,20 @@
 								});
 								$check_all.prop('checked', flag);
 							});
+							//点击删除
+							$('.delete-btn').on('click', function(){
+								$(this).parent().parent().remove();
+							})
+							//点击删除全体选中的
+							$('.delete-all-btn').on('click', function(){
+								$item_checkboxs.each(function() {
+									if ($(this).prop('checked')){
+										ids +=$(this).prop("value") +",";
+										$(this).parent().parent().parent().remove()
+									}
+								})
+								console.log(ids);
+							})
 						});
 					</script>
 				</form>
@@ -102,23 +117,6 @@
 	<!-- 右侧菜单 -->
 	<div th:replace="commons/rightdown::rightdown"></div>
 	<!-- 底部信息 -->
-	<div class="footer">
-		<div class="footer-tags">
-			<div class="tags-box inner">
-				<div class="tag-div">
-					<img src="images/icons/footer_1.gif" alt="厂家直供">
-				</div>
-				<div class="tag-div">
-					<img src="images/icons/footer_2.gif" alt="一件代发">
-				</div>
-				<div class="tag-div">
-					<img src="images/icons/footer_3.gif" alt="美工活动支持">
-				</div>
-				<div class="tag-div">
-					<img src="images/icons/footer_4.gif" alt="信誉认证">
-				</div>
-			</div>
-		</div>
-	</div>
+	<div th:replace="commons/downfooter::downfooter"></div>
 </body>
 </html>

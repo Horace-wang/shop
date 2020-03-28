@@ -10,6 +10,6 @@ import lombok.Data;
 public class SuperUser {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private String superUser;
+    private String superuser;
     private String password;
 }

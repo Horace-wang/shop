@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<link rel="shortcut icon" href="favicon.ico" th:href="@{/images/favicon.ico}">
+	<link rel="shortcut icon" href="images/favicon.ico" th:href="@{/images/favicon.ico}">
 	<link rel="stylesheet" href="css/iconfont.css" th:href="@{/css/iconfont.css}">
 	<link rel="stylesheet" href="css/global.css" th:href="@{/css/global.css}">
 	<link rel="stylesheet" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
@@ -26,10 +26,6 @@
 				<a href="index.html" th:href="@{/index}"><li>首页</li></a>
 				<a href="#" th:href="@{/clothesList(category=1)}"><li>男装</li></a>
 				<a href="#" th:href="@{/clothesList(category=2)}"><li>女装</li></a>
-				<a href="class_room.html"><li>U袋学堂</li></a>
-				<a href="enterprise_id.html"><li>企业账号</li></a>
-				<a href="udai_contract.html"><li>诚信合约</li></a>
-				<a href="item_remove.html"><li>实时下架</li></a>
 			</ul>
 			</div>
 		</div>
@@ -37,11 +33,11 @@
 	<!-- 顶部轮播 -->
     <div class="swiper-container banner-box">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><a href="item_show.html"><img src="images/temp/banner_1.jpg" th:src="@{/images/temp/banner_1.jpg}" class="cover"></a></div>
-            <div class="swiper-slide"><a href="item_show.html"><img src="images/temp/banner_2.jpg" th:src="@{/images/temp/banner_2.jpg}" class="cover"></a></div>
-            <div class="swiper-slide"><a href="item_category.html"><img src="images/temp/banner_3.jpg" th:src="@{/images/temp/banner_3.jpg}" class="cover"></a></div>
-            <div class="swiper-slide"><a href="item_show.html"><img src="images/temp/banner_4.jpg" th:src="@{/images/temp/banner_4.jpg}" class="cover"></a></div>
-            <div class="swiper-slide"><a href="item_sale_page.html"><img src="images/temp/banner_5.jpg" th:src="@{/images/temp/banner_5.jpg}" class="cover"></a></div>
+            <div class="swiper-slide"><a href="item_show.html" th:href="@{/clothesList(category=1)}"><img src="images/temp/banner_1.jpg" th:src="@{/images/temp/banner_1.jpg}" class="cover"></a></div>
+            <div class="swiper-slide"><a href="item_show.html" th:href="@{/clothesList(category=1)}"><img src="images/temp/banner_2.jpg" th:src="@{/images/temp/banner_2.jpg}" class="cover"></a></div>
+            <div class="swiper-slide"><a href="item_category.html" th:href="@{/clothesList(category=1)}"><img src="images/temp/banner_3.jpg" th:src="@{/images/temp/banner_3.jpg}" class="cover"></a></div>
+            <div class="swiper-slide"><a href="item_show.html" th:href="@{/clothesList(category=2)}"><img src="images/temp/banner_4.jpg" th:src="@{/images/temp/banner_4.jpg}" class="cover"></a></div>
+            <div class="swiper-slide"><a href="item_sale_page.html" th:href="@{/clothesList(category=2)}"><img src="images/temp/banner_5.jpg" th:src="@{/images/temp/banner_5.jpg}" class="cover"></a></div>
         </div>
         <div class="swiper-pagination"></div>
     </div>

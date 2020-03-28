@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>对页面的一些重用片段</title>
+</head>
+<body>
+<!--首页头部信息-->
+<!--头部信息-->
+<header class="lyear-layout-header" th:fragment="topbar">
+
+    <nav class="navbar navbar-default">
+        <div class="topbar">
+
+            <div class="topbar-left">
+            </div>
+
+            <ul class="topbar-right">
+                <li class="dropdown dropdown-profile">
+                    <a href="javascript:void(0)" data-toggle="dropdown">
+                        <img class="img-avatar img-avatar-48 m-r-10" src="images/users/avatar.jpg" th:src="@{/images/users/avatar.jpg}" alt="管理员" />
+                        <span th:text="${session.superuser.superUser}"><span class="caret"></span></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <!--<li> <a href="pages_profile.html"><i class="mdi mdi-account"></i> 个人信息</a> </li>-->
+                        <!--<li> <a href="pages_edit_pwd.html"><i class="mdi mdi-lock-outline"></i> 修改密码</a> </li>-->
+                        <!--<li> <a href="javascript:void(0)"><i class="mdi mdi-delete"></i> 清空缓存</a></li>-->
+                        <li class="divider"></li>
+                        <li> <a href="#" th:href="@{/out}"><i class="mdi mdi-logout-variant"></i> 退出登录</a> </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+</header>
+<!--End 头部信息-->
+
+<!--左侧导航-->
+<aside class="lyear-layout-sidebar" th:fragment="leftbar">
+
+    <!-- logo -->
+    <div id="logo" class="sidebar-header">
+        <a th:href="@{/main}"><img src="images/logo-sidebar.png" title="LightYear" alt="LightYear" /></a>
+    </div>
+    <div class="lyear-layout-sidebar-scroll">
+
+        <nav class="sidebar-main">
+            <ul class="nav nav-drawer">
+                <li class="nav-item "> <a th:href="@{/main}"><i class="mdi mdi-home"></i> 后台首页</a> </li>
+                <li class="nav-item ">
+                    <a href="#" th:href="@{/usermange}"><i class="mdi mdi-file-outline"></i>用户管理</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" th:href="@{/goods}"><i class="mdi mdi-file-outline"></i> 商品管理</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" th:href="@{/users}"><i class="mdi mdi-file-outline"></i> 购物车管理</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" th:href="@{/users}"><i class="mdi mdi-file-outline"></i> 地址管理</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" th:href="@{/users}"><i class="mdi mdi-file-outline"></i> 订单管理</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+</aside>
+<!--End 左侧导航-->
+
+</body>
+</html>
