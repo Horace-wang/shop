@@ -15,7 +15,6 @@ public class Address extends Model<Address> {
     private Integer userId;
     private String detailAddress;
     private String tel;
-    private String isDefault;//是否是默认收货地址
 
 
 }

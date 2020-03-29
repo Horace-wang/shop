@@ -9,7 +9,7 @@ import java.util.Date;
 
 //订单实体类
 @Data
-@TableName(value = "order")
+@TableName(value = "orders")
 public class Order {
     @TableId(type = IdType.AUTO)
     private Integer id;

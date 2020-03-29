@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
 @Data
-@TableName(value = "orderitem")
+@TableName(value = "order_item")
 public class OrderItem extends Model<OrderItem> {
     @TableId(type = IdType.AUTO)
     private Integer id;

@@ -37,11 +37,11 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
         //2、生成订单明细表记录
         List<OrderItem> orderItems =new ArrayList<>();
         List<Integer> cartIds = new ArrayList<>();
-        for (CartVo cart:cartVos){
-            OrderItem orderItem = new OrderItem();
+        for (CartVo cart: cartVos){
+            OrderItem orderItem =new OrderItem();
             orderItem.setClothesId(cart.getClothesId());
             orderItem.setCount(cart.getCount());
-            orderItem.setOrderId(cart.getId());
+            orderItem.setOrderId(order.getId());
             orderItems.add(orderItem);
             cartIds.add(cart.getId());
         }

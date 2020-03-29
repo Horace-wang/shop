@@ -50,8 +50,9 @@ public class OrderController {
         String flag=orderService.buy(cartVos,addrId,session);
         if(flag.equals("success")){
             //跳转至订单列表页
+            return "redirect:/orderList";
 
         }
-        return "";
+        return "redirect:/index";
     }
 }
