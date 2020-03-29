@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace命名空间，作用就是对sql进行分类化管理，理解sql隔离
+注意：使用mapper代理方法开发，namespace有特殊重要的作用
+-->
+<mapper namespace="com.wsh.clothesshop.mapper.OrderMapper">
+    <resultMap id="orderAndOrderDetailResultMap" type="com.wsh.clothesshop.entity.Order">
+        <!--订单信息-->
+        <id column="id" property="id"></id>
+        <result column="user_id" property="userId"></result>
+        <result column="address_id" property="addressId"></result>
+        <result column="order_num" property="orderNum"></result>
+        <result column="order_status" property="orderStatus"></result>
+        <result column="create_date" property="createDate"></result>
+
+        <!--用户信息-->
+        <association property="user" javaType="com.wsh.clothesshop.entity.User">
+            <id column="user_id" property="id"></id>
+            <result column="username" property="username"></result>
+            <result column="phone" property="phone"></result>
+        </association>
+        <!--地址信息-->
+        <association property="address" javaType="com.wsh.clothesshop.entity.Address">
+            <id column="address_id" property="id"></id>
+            <result column="detail_address" property="detailAddress"></result>
+        </association>
+        <!--订单明细-->
+        <collection property="orderItems" ofType="com.wsh.clothesshop.entity.OrderItem">
+            <id column="order_item_id"></id>
+            <result column="clothes_id" property="clothesId"></result>
+            <result column="order_id" property="orderId"></result>
+            <result column="count" property="count"></result>
+
+            <!--服装信息-->
+            <association property="clothes" javaType="com.wsh.clothesshop.entity.Clothes">
+                <id column="cloth_id" property="id"></id>
+                <result column="name" property="name"></result>
+                <result column="img_url" property="imgUrl"></result>
+                <result column="color" property="color"></result>
+                <result column="new_price" property="newPrice"></result>
+            </association>
+        </collection>
+    </resultMap>
+    <select id="findOrderAndOrderDetailListByUser" resultMap="orderAndOrderDetailResultMap">
+    SELECT
+        co.*,
+        cu.username,
+        cu.phone,
+        ca.detail_address,
+        coi.id order_item_id,
+        coi.clothes_id,
+        coi.order_id,
+        coi.count,
+        cc.id cloth_id,
+        cc.color,
+        cc.img_url,
+        cc.name,
+        cc.new_price
+
+    FROM
+        orders co,
+        `user` cu,
+        address ca,
+        order_item coi,
+        clothes cc
+    WHERE
+        co.user_id = cu.id
+	AND co.address_id = ca.id
+	AND co.id = coi.order_id
+	AND coi.clothes_id = cc.id and co.user_id=#{id};
+    </select>
+</mapper>

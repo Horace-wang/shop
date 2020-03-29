@@ -30,4 +30,9 @@ class ClothesShopApplicationTests {
         order.setOrderStatus("1");
         orderMapper.insert(order);
     }
+
+    @Test
+    public void findOrderList(){
+        orderMapper.findOrderAndOrderDetailListByUser(1);
+    }
 }
