@@ -26,6 +26,10 @@
 				<a href="javascript:void(0)" th:href="@{/index}"><li class="active">首页</li></a>
 				<a href="#" th:href="@{/clothesList(category=1)}"><li>男装</li></a>
 				<a href="#" th:href="@{/clothesList(category=2)}"><li>女装</li></a>
+				<a href="#" th:href="@{/user/login}" th:if="${session.user == null}"><li>用户登录</li></a>
+				<a href="#" th:href="@{/superLogin}" th:if="${session.user == null}"><li>管理员登陆</li></a>
+				<a href="#" th:href="@{/cartList}" th:if="${session.user != null}"><li>我的购物车</li></a>
+				<a href="#" th:if="${session.user != null}" th:href="@{/orderList}"><li>我的订单</li></a>
 			</ul>
 		</div>
 	</div>
