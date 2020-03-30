@@ -17,8 +17,7 @@
             <a href="javasript:void(0)" th:if="${session.user != null}" th:text="${session.user.username}">我的U袋</a>
             <a href="index.html" th:if="${session.user != null}" th:href="@{/user/logout}">安全退出</a>
             <a href="udai_welcome.html" th:href="@{/cartList}" th:if="${session.user != null}">我的购物车</a>
-            <a href="udai_order.html" th:if="${session.user != null}">我的订单</a>
-            <a href="udai_integral.html" th:if="${session.user != null}">积分平台</a>
+            <a href="udai_order.html" th:if="${session.user != null}" th:href="@{/orderList}">我的订单</a>
             <a href="#" th:href="@{/superLogin}" th:if="${session.user == null}">管理员登陆</a>
         </div>
     </div>

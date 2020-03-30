@@ -3,6 +3,7 @@ package com.wsh.clothesshop.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wsh.clothesshop.entity.Address;
 import com.wsh.clothesshop.entity.CartVo;
+import com.wsh.clothesshop.entity.Order;
 import com.wsh.clothesshop.entity.User;
 import com.wsh.clothesshop.service.AddressService;
 import com.wsh.clothesshop.service.CartService;
@@ -54,5 +55,14 @@ public class OrderController {
 
         }
         return "redirect:/index";
+    }
+
+    //显示用户订单列表
+    @RequestMapping("/orderList")
+    public String list(HttpSession session,Model model){
+        User user = (User) session.getAttribute("user");
+        List<Order> orders =orderService.findUserOrder(user.getId());
+        model.addAttribute("orders",orders);
+        return "orderList";
     }
 }

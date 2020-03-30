@@ -52,4 +52,9 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> {
 
         return "success";
     }
+
+    //查询用户订单
+    public List<Order> findUserOrder(Integer userId){
+        return orderMapper.findOrderAndOrderDetailListByUser(userId);
+    }
 }
