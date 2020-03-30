@@ -34,74 +34,6 @@
 						<div class="navbar-header">
 							<a class="navbar-brand" href="#" th:href="@{/index}">主页</a>
 						</div>
-
-						<form class="navbar-form navbar-left" role="search">
-							<input type="text" class="form-control" placeholder="输入订单号进行查询">
-							<button type="button" class="btn btn-search">
-			                  	<span class="text-success">Search</span>&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span>
-			            	</button>
-						</form>
-
-						<ul class="nav navbar-nav navbar-left">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									交易状态
-									<b class="caret"></b>
-								</a>
-								<ul class="dropdown-menu">
-									<li>
-										<a href="#">全部</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="#">已付款</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="#">未付款</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="#">交易成功</a>
-									</li>
-									<li class="divider"></li>
-								</ul>
-							</li>
-						</ul>
-						<ul class="nav navbar-nav navbar-left">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									订单排序
-									<b class="caret"></b>
-								</a>
-								<ul class="dropdown-menu">
-									<li>
-										<a href="#">订单日期降序</a>
-									</li>
-									<li class="divider"></li>
-									<li>
-										<a href="#">订单日期升序</a>
-									</li>
-									<li class="divider"></li>
-								</ul>
-							</li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li style="padding-right: 15px;">
-								<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">更多筛选条件</a>
-							</li>
-						</ul>
-						
-						<ul class="nav navbar-nav">
-							<li>
-								<a href="#">删除订单</a>
-							</li>
-						</ul>
-							<ul class="nav navbar-nav">
-							<li>
-								<a href="#">清空订单列表</a>
-							</li>
-						</ul>
 					</nav>
 				</div>
 				
@@ -128,7 +60,7 @@
 											<span class="glyphicon glyphicon-time form-control-feedback"></span>
 										</div>
 										<div class="col-md-3">
-											<button type="button" class="btn btn-default">查询&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></button>
+											<button type="button" class="btn btn-default">查询&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span></button>
 										</div>
 									</div>
 								</form>
@@ -140,32 +72,32 @@
 				
 				<!--内容展示 begin-->
 				<div class="table-responsive">
-				  <table class="table table-hover table-striped" th:each="order:${orders}">
+				  <table class="table table-hover table-striped" th:each="order,iter:${orders}">
 				    <caption class="text-info">
 				    	<div class="col-md-10" style="padding-left: 0px;">
 							<input type="checkbox" name="cks">&nbsp;<span th:text="${#calendars.format(order.createDate,'yyyy-MM-dd')}">2017-01-09</span>  订单号:<span th:text="${order.orderNum}">1527600039447022</span>
 				    	</div>
 				    	<div class="col-md-2" style="text-align: right;">
-				    		<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">订单详情</a>
+				    		<a data-toggle="collapse" th:href="@{'#collapseDetail' + ${iter.index}}">订单详情</a>
 				    	</div>
 				    </caption>
 				    <thead>
-				    	<tr id="collapseThree" class="panel-collapse collapse">
+				    	<tr th:id="${'collapseDetail' + iter.index}" class="collapse">
 					      	<td colspan="9">
 							<div class="panel-body">
 								<!--tab选项卡 begin-->
-								<ul id="myTab" class="nav nav-tabs">
+								<ul class="nav nav-tabs">
 									<li class="active">
-										<a href="#home" data-toggle="tab">
+										<a href="#home" th:href="@{'#home'+${iter.index}}" data-toggle="tab">
 											联系人信息
 										</a>
 									</li>
 									<li>
-										<a href="#ios" data-toggle="tab">订单信息</a>
+										<a href="#ios" th:href="@{'#ios'+${iter.index}}" data-toggle="tab">订单信息</a>
 									</li>
 								</ul>
-								<div id="myTabContent" class="tab-content">
-									<div class="tab-pane fade in active" id="home">
+								<div class="tab-content">
+									<div class="tab-pane fade in active" id="home" th:id="${'home' +iter.index}">
 										<div class="row">
 											<div>
 												<ul class="nav navbar-collapse" style="line-height: 3;">
@@ -177,7 +109,7 @@
 										</div>
 										</p>
 									</div>
-									<div class="tab-pane fade" id="ios">
+									<div class="tab-pane fade" id="ios" th:id="${'ios' +iter.index}">
 										<div class="row">
 											<div>
 												<ul class="nav navbar-collapse" style="line-height: 3;">
@@ -219,6 +151,7 @@
 				</div>
 				<!--内容展示end-->
 			</div>
+		</div>
 			<!--分页begin-->
 			<!--<div class="container">
 				<div class="row text-center">
