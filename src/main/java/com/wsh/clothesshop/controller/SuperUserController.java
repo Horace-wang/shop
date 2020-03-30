@@ -50,6 +50,6 @@ public class SuperUserController {
     @RequestMapping("/out")
     public String logout(HttpSession session){
         session.invalidate();
-        return "redirect:/superlogin";
+        return "redirect:/superLogin";
     }
 }

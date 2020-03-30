@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.wsh.clothesshop.entity.enums.Category;
-import com.wsh.clothesshop.entity.enums.Suit;
 import lombok.Data;
 
 import java.util.Date;
@@ -21,7 +20,6 @@ public class Clothes extends Model<Clothes> {
     private String size;
     private String imgUrl;
     private Category category;
-    private Suit suit;
     private Integer number;
     private double newPrice;
 }

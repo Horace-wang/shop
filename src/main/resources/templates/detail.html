@@ -105,7 +105,7 @@
 				<div role="tabpanel" class="tab-pane fade in active" id="detail" aria-labelledby="detail-tab">
 					<div class="item-detail__info clearfix">
 						<div class="record" th:text="${'商品编号:'+clothes.id}">商品编号：D-8812</div>
-						<div class="record" th:text="${'上架时间:'+#dates.format(clothes.addTime,'yyyy-mm-dd')}">上架时间：2017-06-24</div>
+						<div class="record" th:text="${'上架时间:'+#dates.format(clothes.addTime,'yyyy-MM-dd')}">上架时间：2017-06-24</div>
 						<div class="record" th:text="${'商品库存:'+clothes.number}">商品库存：1000件</div>
 					</div>
 				</div>
