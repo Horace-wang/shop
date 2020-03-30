@@ -26,10 +26,6 @@
 				<a href="javascript:void(0)" th:href="@{/index}"><li class="active">首页</li></a>
 				<a href="#" th:href="@{/clothesList(category=1)}"><li>男装</li></a>
 				<a href="#" th:href="@{/clothesList(category=2)}"><li>女装</li></a>
-				<a href="class_room.html"><li>U袋学堂</li></a>
-				<a href="enterprise_id.html"><li>企业账号</li></a>
-				<a href="udai_contract.html"><li>诚信合约</li></a>
-				<a href="item_remove.html"><li></li></a>
 			</ul>
 		</div>
 	</div>
@@ -53,24 +49,7 @@
 	<!-- 右侧菜单 -->
 	<div th:replace="commons/rightdown::rightdown"></div>
 	<!-- 底部信息 -->
-	<div class="footer">
-		<div class="footer-tags">
-			<div class="tags-box inner">
-				<div class="tag-div">
-					<img src="images/icons/footer_1.gif" th:src="@{/images/icons/footer_1.gif}" alt="厂家直供">
-				</div>
-				<div class="tag-div">
-					<img src="images/icons/footer_2.gif" th:src="@{/images/icons/footer_2.gif}" alt="一件代发">
-				</div>
-				<div class="tag-div">
-					<img src="images/icons/footer_3.gif" th:src="@{/images/icons/footer_3.gif}" alt="美工活动支持">
-				</div>
-				<div class="tag-div">
-					<img src="images/icons/footer_4.gif" th:src="@{/images/icons/footer_4.gif}" alt="信誉认证">
-				</div>
-			</div>
-		</div>
-	</div>
+	<div th:replace="commons/downfooter::downfooter"></div>
 	<script th:inline="javascript">
 		//获取应用路径
 		var contextPath = [[${#request.getContextPath()}]];
