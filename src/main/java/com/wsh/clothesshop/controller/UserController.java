@@ -6,10 +6,8 @@ import com.wsh.clothesshop.mapper.UserMapper;
 import com.wsh.clothesshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -66,5 +64,22 @@ public class UserController {
     public String logout(HttpSession session){
         session.invalidate();
         return "redirect:/index";
+    }
+
+
+    //来到用户修改页面
+    @GetMapping("/toSetUser/{id}")
+    public String toChangeUserPage(@PathVariable("id")Integer id, Model model){
+        User user =userMapper.selectById(id);
+        model.addAttribute("user",user);
+        return "userSet";
+
+    }
+
+    //更新用户信息
+    @PutMapping("/toSetUser")
+    public String updateUser(User user){
+        userMapper.updateUser(user);
+        return"redirect:/index";
     }
 }

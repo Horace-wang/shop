@@ -1,8 +1,9 @@
 package com.wsh.clothesshop;
 
 import com.wsh.clothesshop.entity.Order;
+import com.wsh.clothesshop.entity.User;
 import com.wsh.clothesshop.mapper.OrderMapper;
-import com.wsh.clothesshop.service.SuperUserService;
+import com.wsh.clothesshop.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,10 @@ import java.util.UUID;
 @SpringBootTest
 class ClothesShopApplicationTests {
     @Autowired
-    private SuperUserService superUserService;
+    private UserMapper userMapper;
     @Autowired
     private OrderMapper orderMapper;
+
     @Test
     public void findCartList(){
         //1、生成订单表记录
@@ -34,5 +36,11 @@ class ClothesShopApplicationTests {
     @Test
     public void findOrderList(){
         orderMapper.findOrderAndOrderDetailListByUser(1);
+    }
+
+    @Test
+    public void findSomeone(){
+        User user =userMapper.selectById(7);
+
     }
 }

@@ -18,6 +18,7 @@
             <a href="udai_welcome.html" th:href="@{/toAddress}" th:if="${session.user != null}">我的地址</a>
             <a href="udai_order.html" th:if="${session.user != null}" th:href="@{/orderList}">我的订单</a>
             <a href="#" th:href="@{/superLogin}" th:if="${session.user == null}">管理员登陆</a>
+            <a href="#" th:href="@{/user/toSetUser/}+${session.user.id}" th:if="${session.user != null}">用户设置</a>
         </div>
     </div>
 </div>
