@@ -29,9 +29,9 @@ public class ManageClothesController {
 
     //添加服装
     @PostMapping("/manageAddClothes")
-    public String addUser(Clothes clothes){
+    public String addClothes(Clothes clothes){
         clothesMapper.insert(clothes);
-        return "redirect:/manageAddClothes";
+        return "redirect:/manageClothes";
     }
 
     //来到修改页面，查出当前服装并在页面回显
@@ -42,16 +42,16 @@ public class ManageClothesController {
         return "cloth/add";
 
     }
-    //更新用户信息
+    //更新商品信息
     @PutMapping("/manageAddClothes")
-    public String updateUser(Clothes clothes){
+    public String updateClothes(Clothes clothes){
         clothesMapper.updateClothes(clothes);
         return"redirect:/manageClothes";
     }
 
-    //删除用户信息
+    //删除商品信息
     @DeleteMapping("/manageAddClothes/{id}")
-    public String deleteUser(@PathVariable("id")Integer id){
+    public String deleteClothes(@PathVariable("id")Integer id){
         clothesMapper.deleteById(id);
         return "redirect:/manageClothes";
     }
