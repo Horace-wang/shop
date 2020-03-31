@@ -15,7 +15,7 @@
             <a href="#" th:href="@{/user/login}" th:if="${session.user == null}"><span class="cr">用户登录</span></a>
             <!--<a href="login.html?p=register">注册</a>-->
             <a href="index.html" th:if="${session.user != null}" th:href="@{/user/logout}">安全退出</a>
-            <a href="udai_welcome.html" th:href="@{/cartList}" th:if="${session.user != null}">我的购物车</a>
+            <a href="udai_welcome.html" th:href="@{/toAddress}" th:if="${session.user != null}">我的地址</a>
             <a href="udai_order.html" th:if="${session.user != null}" th:href="@{/orderList}">我的订单</a>
             <a href="#" th:href="@{/superLogin}" th:if="${session.user == null}">管理员登陆</a>
         </div>
