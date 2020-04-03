@@ -133,7 +133,7 @@
 							if (count == 0){
 								alert("请选择商品");
 							}else {
-								window.location.href=contextPath +'/orderConfirm?ids=' +ids;
+								window.location.href=contextPath +'/orderConfirm?ids=' +ids.substring(0,ids.length-1);
 							}
 						}
 					</script>
