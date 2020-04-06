@@ -26,7 +26,7 @@ public class ManageOrderController {
     }
     //查看订单详情
     @GetMapping("/manageOrderItem")
-    public String toOrderItermPage(Model model){
+    public String toOrderItemPage(Model model){
         List<OrderItem> orderItems =orderItemMapper.selectList(null);
         model.addAttribute("orderItems",orderItems);
         return "order/itemList";
