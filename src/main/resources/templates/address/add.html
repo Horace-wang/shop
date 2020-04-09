@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>员工添加页面</title>
+<link rel="icon" href="/back/images/favicon.ico" type="image/ico">
+
+
+<meta name="author" content="yinqi">
+<link href="/back/css/bootstrap.min.css" rel="stylesheet">
+<link href="/back/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="/back/css/style.css" rel="stylesheet">
+</head>
+  
+<body data-logobg="color_8" data-sidebarbg="color_8">
+<div class="lyear-layout-web">
+  <div class="lyear-layout-container">
+    <!--左侧导航-->
+    <div th:replace="commons/bar::leftbar"></div>
+    <!--End 左侧导航-->
+    
+    <!--头部信息-->
+    <div th:replace="commons/bar::topbar"></div>
+    <!--End 头部信息-->
+    
+    <!--页面主要内容-->
+    <main class="lyear-layout-content">
+      
+      <div class="container-fluid">
+        <!--需要区分是员工修改还是员工添加-->
+        <form th:action="@{/changeAddress}" method="post">
+          <!--发送put请求，修改员工数据-->
+          <!--1、springMvc配置hiddenHttpmethodfilter-
+              2、页面创建一个post表单
+              3、创建一个input项，name=_method-->
+          <input type="hidden" name="_method" value="put" th:if="${address!=null}"/>
+          <input type="hidden" name="id" th:if="${address!=null}" th:value="${address.id}">
+          <div class="form-group">
+            <label>用户</label>
+            <input type="text" name="userId" class="form-control" th:value="${address!=null}?${address.userId}">
+          </div>
+          <div class="form-group">
+            <label>详细地址</label>
+            <input type="text" name="detailAddress" class="form-control" th:value="${address!=null}?${address.detailAddress}">
+          </div>
+          <div class="form-group">
+            <label>电话</label>
+            <input type="text" name="tel" class="form-control" th:value="${address!=null}?${address.tel}">
+          </div>
+            <button class="btn btn-primary" type="submit" th:text="${address!=null}?'修改':'添加'">添加</button>
+        </form>
+
+        
+      </div>
+      
+    </main>
+    <!--End 页面主要内容-->
+  </div>
+</div>
+
+<script type="text/javascript" src="/back/js/jquery.min.js" ></script>
+<script type="text/javascript" src="/back/js/bootstrap.min.js" ></script>
+<script type="text/javascript" src="/back/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="/back/js/main.js" ></script>
+<script type="text/javascript">
+$(function(){
+    $('.search-bar .dropdown-menu a').click(function() {
+        var field = $(this).data('field') || '';
+        $('#search-field').val(field);
+        $('#search-btn').html($(this).text() + ' <span class="caret"></span>');
+    });
+});
+</script>
+</body>
+</html>

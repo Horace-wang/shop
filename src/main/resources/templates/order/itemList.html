@@ -44,6 +44,7 @@
                         <th>订单编号</th>
                         <th>服装编号</th>
                         <th>数量</th>
+                        <th>操作</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -52,6 +53,9 @@
                         <td th:text="${orders.orderId}"></td>
                         <td th:text="${orders.clothesId}"></td>
                         <td th:text="${orders.count}"></td>
+                        <td>
+                          <a class="btn btn-sm btn-primary" th:href="@{/manageUpdateItem/}+${orders.id}">编辑</a>
+                        </td>
                       </tr>
                     </tbody>
                   </table>

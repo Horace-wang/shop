@@ -33,6 +33,9 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-toolbar clearfix">
+                <div class="toolbar-btn-action">
+                  <a class="btn btn-success m-r-5" href="#" th:href="@{/changeAddress}"><i class="mdi mdi-plus"></i> 新增</a>
+                </div>
               </div>
               <div class="card-body">
                 
@@ -44,6 +47,7 @@
                         <th>用户id</th>
                         <th>详细地址</th>
                         <th>电话</th>
+                        <th>操作</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -52,6 +56,10 @@
                         <td th:text="${address.userId}"></td>
                         <td th:text="${address.detailAddress}"></td>
                         <td th:text="${address.tel}"></td>
+                        <td>
+                          <a class="btn btn-sm btn-primary" th:href="@{/changeAddress/}+${address.id}">编辑</a>
+                          <button class="btn btn-sm btn-danger deleteBtn" th:attr="del_uri=@{/changeAddress/}+${address.id}">删除</button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -66,6 +74,9 @@
       </div>
       
     </main>
+    <form id="deleteAddressForm" method="post">
+      <input type="hidden" name="_method" value="delete"/>
+    </form>
     <!--End 页面主要内容-->
   </div>
 </div>
@@ -82,6 +93,13 @@ $(function(){
         $('#search-btn').html($(this).text() + ' <span class="caret"></span>');
     });
 });
+</script>
+<script>
+  $(".deleteBtn").click(function () {
+    //删除当前服装的
+    $("#deleteAddressForm").attr("action",$(this).attr("del_uri")).submit();
+    return false;
+  });
 </script>
 </body>
 </html>
