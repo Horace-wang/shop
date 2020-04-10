@@ -9,7 +9,7 @@
 	<div class="right-box">
 		<a href="item_show.html" th:href="@{/detail(id=${cloth.id})}" class="floor-item" th:each="cloth:${clothesList}">
 			<div class="item-img hot-img">
-				<img src="images/temp/S-001.jpg" th:src="@{/static/}+${cloth.imgUrl}" alt="纯色圆领短袖T恤活a动衫弹" class="cover">
+				<img src="images/temp/S-001.jpg" th:src="@{'/static/'+${cloth.imgUrl}}" alt="纯色圆领短袖T恤活a动衫弹" class="cover">
 			</div>
 			<div class="price clearfix">
 				<span class="pull-left cr fz16" th:text="${cloth.newPrice}">￥18.0</span>

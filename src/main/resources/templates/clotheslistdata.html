@@ -8,7 +8,7 @@
 <div class="item-list__area clearfix">
 	<div class="item-card" th:each="cloth:${clothesList}">
 		<a href="item_show.html" th:href="@{/detail(id=${cloth.id})}" class="photo">
-			<img src="images/temp/M-001.jpg" th:src="@{/static/}+${cloth.imgUrl}" alt="锦瑟 原创传统日常汉服男绣花交领衣裳cp情侣装春夏款" class="cover">
+			<img src="images/temp/M-001.jpg" th:src="@{'/static/'+${cloth.imgUrl}}" alt="锦瑟 原创传统日常汉服男绣花交领衣裳cp情侣装春夏款" class="cover">
 			<div class="name" th:text="${cloth.name}">锦瑟 原创传统日常汉服男绣花交领衣裳cp情侣装春夏款</div></a>
 		<div class="middle">
 			<div class="price" th:text="${cloth.newPrice}"><small>￥</small>18.0</div>

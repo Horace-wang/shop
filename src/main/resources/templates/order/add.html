@@ -29,26 +29,31 @@
       
       <div class="container-fluid">
         <!--需要区分是员工修改还是员工添加-->
-        <form th:action="@{/changeAddress}" method="post">
+        <form th:action="@{/manageOrders}" method="post">
           <!--发送put请求，修改员工数据-->
-          <!--1、springMvc配置hiddenHttpmethodfilter-
+          <!--1、springMvc配置hiddenHttpmethodfilter
               2、页面创建一个post表单
               3、创建一个input项，name=_method-->
-          <input type="hidden" name="_method" value="put" th:if="${address!=null}"/>
-          <input type="hidden" name="id" th:if="${address!=null}" th:value="${address.id}">
+          <input type="hidden" name="_method" value="put" th:if="${order!=null}"/>
+          <input type="hidden" name="id" th:if="${order!=null}" th:value="${order.id}">
+          <input type="hidden" name="orderNum" th:if="${order!=null}" th:value="${order.orderNum}">
           <div class="form-group">
             <label>用户</label>
-            <input type="text" name="userId" class="form-control" th:value="${address!=null}?${address.userId}">
+            <input type="text" name="userId" class="form-control" th:value="${order!=null}?${order.userId}">
           </div>
           <div class="form-group">
-            <label>详细地址</label>
-            <input type="text" name="detailAddress" class="form-control" th:value="${address!=null}?${address.detailAddress}">
+            <label>地址</label>
+            <input type="text" name="detailAddress" class="form-control" th:value="${order!=null}?${order.addressId}">
           </div>
           <div class="form-group">
-            <label>电话</label>
-            <input type="text" name="tel" class="form-control" th:value="${address!=null}?${address.tel}">
+            <label>日期</label>
+            <input type="text" name="createDate" class="form-control" th:value="${order!=null}?${#dates.format(order.createDate,'yyyy-MM-dd')}">
           </div>
-            <button class="btn btn-primary" type="submit" th:text="${address!=null}?'修改':'添加'">添加</button>
+          <div class="form-group">
+            <label>状态</label>
+            <input type="text" name="orderStatus" class="form-control" th:value="${order!=null}?${order.orderStatus}">
+          </div>
+            <button class="btn btn-primary" type="submit" th:text="${order!=null}?'修改':'添加'">添加</button>
         </form>
 
         

@@ -23,7 +23,7 @@
 	<div class="bgf5 clearfix">
 		<div class="top-user">
 			<div class="inner">
-				<a class="logo" href="index.html" th:href="@{/index}"><img src="images/icons/logo.jpg" alt="U袋网" class="cover"></a>
+				<a class="navbar-brand" href="#" th:href="@{/index}">主页</a>
 				<div class="title">购物车</div>
 			</div>
 		</div>
@@ -49,7 +49,7 @@
 							<tr th:each="cart:${cartList}">
 								<th scope="row">
 									<label class="checked-label"><input type="checkbox" th:value="${cart.id}"><i></i>
-										<div class="img"><img src="images/temp/M-003.jpg" th:src="@{/static/}+${cart.imgUrl}" alt="" class="cover"></div>
+										<div class="img"><img src="images/temp/M-003.jpg" th:src="@{'/static/'+${cart.imgUrl}}" alt="" class="cover"></div>
 									</label>
 								</th>
 								<td>

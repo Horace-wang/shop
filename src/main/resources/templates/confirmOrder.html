@@ -23,7 +23,7 @@
 	<div class="bgf5 clearfix">
 		<div class="top-user">
 			<div class="inner">
-				<a class="logo" href="index.html" th:href="@{/index}"><img src="images/icons/logo.jpg" alt="U袋网" class="cover"></a>
+				<a class="navbar-brand" href="#" th:href="@{/index}">主页</a>
 				<div class="title">购物车</div>
 			</div>
 		</div>
@@ -61,7 +61,7 @@
 							</thead>
 							<tbody>
 								<tr th:each="cart:${list}">
-									<th scope="row"><a href="item_show.html"><div class="img"><img src="images/temp/M-003.jpg" th:src="@{/static/}+${cart.imgUrl}" alt="" class="cover"></div></a></th>
+									<th scope="row"><a href="item_show.html"><div class="img"><img src="images/temp/M-003.jpg" th:src="@{'/static/'+${cart.imgUrl}}" alt="" class="cover"></div></a></th>
 									<td>
 										<div class="name ep3" th:text="${cart.clothesName}">锦瑟 原创传统日常汉服男绣花交领衣裳cp情侣装春夏款</div>
 										<div class="type c9" th:text="${cart.color}">颜色分类：深棕色</div>
