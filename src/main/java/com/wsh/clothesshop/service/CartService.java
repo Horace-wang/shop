@@ -17,7 +17,8 @@ public class CartService extends ServiceImpl<CartMapper, Cart> {
 
     //根据购物车的id查询对应的记录
     public List<CartVo> findCartByIds(String ids){
-        return cartMapper.findCartListByIds(Arrays.asList(ids));
+        String[] idArray=ids.split(",");
+        return cartMapper.findCartListByIds(Arrays.asList(idArray));
     }
 
     //根据用户查询购物车的记录
